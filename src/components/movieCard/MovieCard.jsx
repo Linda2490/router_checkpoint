@@ -2,8 +2,7 @@ import React from 'react'
 import {Card, Button} from 'react-bootstrap'
 import './MovieCard.css'
 import {Link} from 'react-router-dom'
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import MovieDetail from '../movieDetail/MovieDetail';
+
 
 function MovieCard({movies}) {
     return (
@@ -19,13 +18,13 @@ function MovieCard({movies}) {
              <h2> {"⭐".repeat(movies.rate)} </h2>
              </Card.Body>
              <Card.Footer>
-             <Router>
-                 <Link to='/MovieDetail'>
+             
+                 <Link to = {`/movies/${movies.id}`}>
                      
                      <Button variant="primary" >more details</Button>
                  </Link>
-                 <Route path="/movieCard/:id" component={MovieDetail}/>
-             </Router>
+                 
+             
              </Card.Footer>
              </Card>
              

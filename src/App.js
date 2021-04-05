@@ -5,10 +5,12 @@ import React, {useState} from 'react'
 import AddMovie from "./components/addMovie/AddMovie";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import MovieDetail from './components/movieDetail/MovieDetail'
 
 function App () {
    const [movies, setMovies] = useState([
-  {
+  { 
+    id : Math.random(),
     title: "The last samurai",
     description:
       "An American military advisor embraces the Samurai culture he was hired to destroy after he is captured in battle.",
@@ -19,7 +21,8 @@ function App () {
     
   },
   
-  {
+  { 
+     id : Math.random(),
     title: "Eien no zero",
     description:
       "a Zero fighter story based on a fictional war.",
@@ -29,6 +32,7 @@ function App () {
   trailer : <iframe width="560" height="315" src="https://www.youtube.com/embed/123ihd2TcFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   },
   {
+    id : Math.random(),
     title: "Spirited away",
     description:
       "he story of Chihiro Ogino (Hiiragi), a 10-year-old girl who, while moving to a new neighbourhood, enters the world of Kami.",
@@ -37,7 +41,7 @@ function App () {
     rate : 5,
     trailer : <iframe width="560" height="315" src="https://www.youtube.com/embed/ByXuk9QqQkk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   },
-  {
+  {  id : Math.random(),
     title: "The Great War of Archimedes",
     description:
       "Set in the 1930's, the headquarters of the Imperial Japanese Navy sets out to build the world's biggest battleship Yamato.",
@@ -65,11 +69,13 @@ function App () {
        <NavBar getRateSearch={getRateSearch} getTitleSearch={getTitleSearch}/>
        <div className="addMovieBtn"> <AddMovie getNewMovie={getNewMovie}/>
        </div>
-       <Switch>
-       <Route>
        
-       <MovieList myMoviesList={movies} searchRate={searchRate} searchTitle={searchTitle}/>
-       </Route>
+      
+       
+       <Switch>
+       <Route path="/" exact render = {()=> <MovieList myMoviesList={movies} searchRate={searchRate} searchTitle={searchTitle}/>}/> 
+       <Route path="/movies/:id" render={({match}) => <MovieDetail movies={movies} match={match}/> }/>
+       
        </Switch>
        
     </div>
